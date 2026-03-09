@@ -50,7 +50,7 @@ const sumOf = (values: number[]) => {
   return roundTo(values.reduce((sum, value) => sum + value, 0));
 };
 
-const toIsoStringOrNull = (value: Date | string | number | undefined | null) => {
+const toTimeMsOrNull = (value: Date | string | number | undefined | null) => {
   if (value == null) {
     return null;
   }
@@ -61,7 +61,17 @@ const toIsoStringOrNull = (value: Date | string | number | undefined | null) => 
     return null;
   }
 
-  return date.toISOString();
+  return date.getTime();
+};
+
+const toIsoStringOrNull = (value: Date | string | number | undefined | null) => {
+  const timestampMs = toTimeMsOrNull(value);
+
+  if (timestampMs == null) {
+    return null;
+  }
+
+  return new Date(timestampMs).toISOString();
 };
 
 const mapHeartRateSeries = (
@@ -149,6 +159,16 @@ export const getWorkouts = async (req: Request, res: Response) => {
         const mappedWorkouts = workouts.map((workout) => {
           const startDate = new Date(workout.start);
           const endDate = new Date(workout.end);
+          const detailEndCandidates = [
+            endDate.getTime(),
+            ...(workout.heartRateData?.map((entry) => toTimeMsOrNull(entry.date) ?? 0) || []),
+            ...(workout.heartRateRecovery?.map((entry) => toTimeMsOrNull(entry.date) ?? 0) || []),
+            ...(workout.stepCount?.map((entry) => toTimeMsOrNull(entry.date) ?? 0) || []),
+            toTimeMsOrNull(workout.temperature?.date) ?? 0,
+            toTimeMsOrNull(workout.humidity?.date) ?? 0,
+            toTimeMsOrNull(workout.intensity?.date) ?? 0,
+          ].filter((value) => value > 0);
+          const detailEndMs = Math.max(...detailEndCandidates);
 
           const result = {
             id: workout.workoutId,
@@ -156,7 +176,7 @@ export const getWorkouts = async (req: Request, res: Response) => {
             start_time: startDate.toISOString(),
             end_time: endDate.toISOString(),
             start_ms: startDate.getTime(),
-            end_ms: endDate.getTime(),
+            end_ms: detailEndMs,
             duration_minutes: workout.duration / 60,
             calories_burned: workout.activeEnergyBurned?.qty || null,
           };
