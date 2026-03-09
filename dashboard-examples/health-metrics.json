@@ -79,8 +79,8 @@
         "overrides": [
           {
             "matcher": {
-              "id": "byRegexp",
-              "options": ".*daily_steps.*"
+              "id": "byName",
+              "options": "Daily"
             },
             "properties": [
               {
@@ -91,14 +91,10 @@
           },
           {
             "matcher": {
-              "id": "byRegexp",
-              "options": ".*weekly_trend.*"
+              "id": "byName",
+              "options": "Trend"
             },
             "properties": [
-              {
-                "id": "displayName",
-                "value": "Trend"
-              },
               {
                 "id": "color",
                 "value": {
@@ -160,8 +156,8 @@
               "type": "timestamp"
             },
             {
-              "selector": "daily_steps",
-              "text": "Daily Steps",
+              "selector": "value",
+              "text": "Daily",
               "type": "number"
             }
           ],
@@ -172,13 +168,12 @@
           "filters": [],
           "format": "table",
           "global_query_id": "",
-          "parser": "uql",
+          "parser": "backend",
           "refId": "Daily Steps",
           "root_selector": "",
           "source": "url",
           "type": "json",
-          "uql": "parse-json\n| extend \"date\"=todatetime(\"date\"), \"qty\"=tonumber(\"qty\")\n| extend \"date\"=startofday(\"date\")\n| extend \"day\"=format_datetime(\"date\",'YYYY-MM-DD')\n| summarize \"daily_steps\"=sum(\"qty\") by \"day\"\n| extend \"date\"=strcat(\"day\",'T12:00:00Z')\n| extend \"date\"=todatetime(\"date\")\n| project \"date\", \"daily_steps\"\n| order by \"date\" asc",
-          "url": "/api/metrics/step_count?from=${__from}&to=${__to}",
+          "url": "/api/metrics/step_count?from=${__from}&to=${__to}&bucket=day&rollup=sum",
           "url_options": {
             "data": "",
             "method": "GET"
@@ -192,8 +187,8 @@
               "type": "timestamp"
             },
             {
-              "selector": "weekly_trend",
-              "text": "Weekly Trend",
+              "selector": "value",
+              "text": "Trend",
               "type": "number"
             }
           ],
@@ -204,13 +199,12 @@
           "filters": [],
           "format": "table",
           "global_query_id": "",
-          "parser": "uql",
+          "parser": "backend",
           "refId": "Steps Trend",
           "root_selector": "",
           "source": "url",
           "type": "json",
-          "uql": "parse-json\n| extend \"date\"=todatetime(\"date\"), \"qty\"=tonumber(\"qty\")\n| extend \"date\"=startofday(\"date\")\n| extend \"day\"=format_datetime(\"date\",'YYYY-MM-DD')\n| summarize \"daily_steps\"=sum(\"qty\") by \"day\"\n| extend \"date\"=todatetime(\"day\")\n| extend \"week\"=startofweek(\"date\")\n| extend \"week_label\"=format_datetime(\"week\",'YYYY-MM-DD')\n| summarize \"weekly_trend\"=mean(\"daily_steps\") by \"week_label\"\n| extend \"date\"=strcat(\"week_label\",'T12:00:00Z')\n| extend \"date\"=todatetime(\"date\")\n| project \"date\", \"weekly_trend\"\n| order by \"date\" asc",
-          "url": "/api/metrics/step_count?from=${__from}&to=${__to}",
+          "url": "/api/metrics/step_count?from=${__from}&to=${__to}&bucket=day&rollup=sum&trend=rolling_avg&window=7",
           "url_options": {
             "data": "",
             "method": "GET"
@@ -279,8 +273,8 @@
         "overrides": [
           {
             "matcher": {
-              "id": "byRegexp",
-              "options": ".*daily_active_energy.*"
+              "id": "byName",
+              "options": "Daily"
             },
             "properties": [
               {
@@ -291,14 +285,10 @@
           },
           {
             "matcher": {
-              "id": "byRegexp",
-              "options": ".*weekly_trend.*"
+              "id": "byName",
+              "options": "Trend"
             },
             "properties": [
-              {
-                "id": "displayName",
-                "value": "Trend"
-              },
               {
                 "id": "color",
                 "value": {
@@ -360,8 +350,8 @@
               "type": "timestamp"
             },
             {
-              "selector": "daily_active_energy",
-              "text": "Daily Active Energy",
+              "selector": "value",
+              "text": "Daily",
               "type": "number"
             }
           ],
@@ -372,13 +362,12 @@
           "filters": [],
           "format": "table",
           "global_query_id": "",
-          "parser": "uql",
+          "parser": "backend",
           "refId": "Daily Active Energy",
           "root_selector": "",
           "source": "url",
           "type": "json",
-          "uql": "parse-json\n| extend \"date\"=todatetime(\"date\"), \"qty\"=tonumber(\"qty\")\n| extend \"date\"=startofday(\"date\")\n| extend \"day\"=format_datetime(\"date\",'YYYY-MM-DD')\n| summarize \"daily_active_energy\"=sum(\"qty\") by \"day\"\n| extend \"date\"=strcat(\"day\",'T12:00:00Z')\n| extend \"date\"=todatetime(\"date\")\n| project \"date\", \"daily_active_energy\"\n| order by \"date\" asc",
-          "url": "/api/metrics/active_energy?from=${__from}&to=${__to}",
+          "url": "/api/metrics/active_energy?from=${__from}&to=${__to}&bucket=day&rollup=sum",
           "url_options": {
             "data": "",
             "method": "GET"
@@ -392,8 +381,8 @@
               "type": "timestamp"
             },
             {
-              "selector": "weekly_trend",
-              "text": "Weekly Trend",
+              "selector": "value",
+              "text": "Trend",
               "type": "number"
             }
           ],
@@ -404,13 +393,12 @@
           "filters": [],
           "format": "table",
           "global_query_id": "",
-          "parser": "uql",
+          "parser": "backend",
           "refId": "Active Energy Trend",
           "root_selector": "",
           "source": "url",
           "type": "json",
-          "uql": "parse-json\n| extend \"date\"=todatetime(\"date\"), \"qty\"=tonumber(\"qty\")\n| extend \"date\"=startofday(\"date\")\n| extend \"day\"=format_datetime(\"date\",'YYYY-MM-DD')\n| summarize \"daily_active_energy\"=sum(\"qty\") by \"day\"\n| extend \"date\"=todatetime(\"day\")\n| extend \"week\"=startofweek(\"date\")\n| extend \"week_label\"=format_datetime(\"week\",'YYYY-MM-DD')\n| summarize \"weekly_trend\"=mean(\"daily_active_energy\") by \"week_label\"\n| extend \"date\"=strcat(\"week_label\",'T12:00:00Z')\n| extend \"date\"=todatetime(\"date\")\n| project \"date\", \"weekly_trend\"\n| order by \"date\" asc",
-          "url": "/api/metrics/active_energy?from=${__from}&to=${__to}",
+          "url": "/api/metrics/active_energy?from=${__from}&to=${__to}&bucket=day&rollup=sum&trend=rolling_avg&window=7",
           "url_options": {
             "data": "",
             "method": "GET"
@@ -672,14 +660,10 @@
         "overrides": [
           {
             "matcher": {
-              "id": "byRegexp",
-              "options": ".*resting_heart_rate.*"
+              "id": "byName",
+              "options": "Daily"
             },
             "properties": [
-              {
-                "id": "displayName",
-                "value": "Daily"
-              },
               {
                 "id": "custom.lineWidth",
                 "value": 1
@@ -696,14 +680,10 @@
           },
           {
             "matcher": {
-              "id": "byRegexp",
-              "options": ".*weekly_trend.*"
+              "id": "byName",
+              "options": "Trend"
             },
             "properties": [
-              {
-                "id": "displayName",
-                "value": "Trend"
-              },
               {
                 "id": "color",
                 "value": {
@@ -757,8 +737,8 @@
               "type": "timestamp"
             },
             {
-              "selector": "resting_heart_rate",
-              "text": "Resting Heart Rate",
+              "selector": "value",
+              "text": "Daily",
               "type": "number"
             }
           ],
@@ -769,13 +749,12 @@
           "filters": [],
           "format": "table",
           "global_query_id": "",
-          "parser": "uql",
+          "parser": "backend",
           "refId": "Resting Heart Rate",
           "root_selector": "",
           "source": "url",
           "type": "json",
-          "uql": "parse-json\n| extend \"date\"=todatetime(\"date\"), \"resting_heart_rate\"=tonumber(\"qty\")\n| project \"date\", \"resting_heart_rate\"\n| order by \"date\" asc",
-          "url": "/api/metrics/resting_heart_rate?from=${__from}&to=${__to}",
+          "url": "/api/metrics/resting_heart_rate?from=${__from}&to=${__to}&bucket=day&rollup=avg",
           "url_options": {
             "data": "",
             "method": "GET"
@@ -789,8 +768,8 @@
               "type": "timestamp"
             },
             {
-              "selector": "weekly_trend",
-              "text": "Weekly Trend",
+              "selector": "value",
+              "text": "Trend",
               "type": "number"
             }
           ],
@@ -801,13 +780,12 @@
           "filters": [],
           "format": "table",
           "global_query_id": "",
-          "parser": "uql",
+          "parser": "backend",
           "refId": "Resting HR Trend",
           "root_selector": "",
           "source": "url",
           "type": "json",
-          "uql": "parse-json\n| extend \"date\"=todatetime(\"date\"), \"qty\"=tonumber(\"qty\")\n| extend \"week\"=startofweek(\"date\")\n| extend \"week_label\"=format_datetime(\"week\",'YYYY-MM-DD')\n| summarize \"weekly_trend\"=mean(\"qty\") by \"week_label\"\n| extend \"date\"=strcat(\"week_label\",'T12:00:00Z')\n| extend \"date\"=todatetime(\"date\")\n| project \"date\", \"weekly_trend\"\n| order by \"date\" asc",
-          "url": "/api/metrics/resting_heart_rate?from=${__from}&to=${__to}",
+          "url": "/api/metrics/resting_heart_rate?from=${__from}&to=${__to}&bucket=day&rollup=avg&trend=rolling_avg&window=7",
           "url_options": {
             "data": "",
             "method": "GET"
@@ -884,14 +862,10 @@
         "overrides": [
           {
             "matcher": {
-              "id": "byRegexp",
-              "options": ".*hrv.*"
+              "id": "byName",
+              "options": "Daily"
             },
             "properties": [
-              {
-                "id": "displayName",
-                "value": "Daily"
-              },
               {
                 "id": "custom.lineWidth",
                 "value": 1
@@ -908,14 +882,10 @@
           },
           {
             "matcher": {
-              "id": "byRegexp",
-              "options": ".*weekly_trend.*"
+              "id": "byName",
+              "options": "Trend"
             },
             "properties": [
-              {
-                "id": "displayName",
-                "value": "Trend"
-              },
               {
                 "id": "color",
                 "value": {
@@ -969,8 +939,8 @@
               "type": "timestamp"
             },
             {
-              "selector": "hrv",
-              "text": "HRV",
+              "selector": "value",
+              "text": "Daily",
               "type": "number"
             }
           ],
@@ -981,13 +951,12 @@
           "filters": [],
           "format": "table",
           "global_query_id": "",
-          "parser": "uql",
+          "parser": "backend",
           "refId": "HRV",
           "root_selector": "",
           "source": "url",
           "type": "json",
-          "uql": "parse-json\n| extend \"date\"=todatetime(\"date\"), \"hrv\"=tonumber(\"qty\")\n| project \"date\", \"hrv\"\n| order by \"date\" asc",
-          "url": "/api/metrics/heart_rate_variability?from=${__from}&to=${__to}",
+          "url": "/api/metrics/heart_rate_variability?from=${__from}&to=${__to}&bucket=day&rollup=avg",
           "url_options": {
             "data": "",
             "method": "GET"
@@ -1001,8 +970,8 @@
               "type": "timestamp"
             },
             {
-              "selector": "weekly_trend",
-              "text": "Weekly Trend",
+              "selector": "value",
+              "text": "Trend",
               "type": "number"
             }
           ],
@@ -1013,13 +982,12 @@
           "filters": [],
           "format": "table",
           "global_query_id": "",
-          "parser": "uql",
+          "parser": "backend",
           "refId": "HRV Trend",
           "root_selector": "",
           "source": "url",
           "type": "json",
-          "uql": "parse-json\n| extend \"date\"=todatetime(\"date\"), \"qty\"=tonumber(\"qty\")\n| extend \"week\"=startofweek(\"date\")\n| extend \"week_label\"=format_datetime(\"week\",'YYYY-MM-DD')\n| summarize \"weekly_trend\"=mean(\"qty\") by \"week_label\"\n| extend \"date\"=strcat(\"week_label\",'T12:00:00Z')\n| extend \"date\"=todatetime(\"date\")\n| project \"date\", \"weekly_trend\"\n| order by \"date\" asc",
-          "url": "/api/metrics/heart_rate_variability?from=${__from}&to=${__to}",
+          "url": "/api/metrics/heart_rate_variability?from=${__from}&to=${__to}&bucket=day&rollup=avg&trend=rolling_avg&window=7",
           "url_options": {
             "data": "",
             "method": "GET"
@@ -1129,7 +1097,7 @@
               "type": "timestamp"
             },
             {
-              "selector": "vo2max",
+              "selector": "value",
               "text": "VO2 Max",
               "type": "number"
             }
@@ -1141,13 +1109,12 @@
           "filters": [],
           "format": "table",
           "global_query_id": "",
-          "parser": "uql",
+          "parser": "backend",
           "refId": "VO2 Max",
           "root_selector": "",
           "source": "url",
           "type": "json",
-          "uql": "parse-json\n| extend \"date\"=todatetime(\"date\"), \"vo2max\"=tonumber(\"qty\")\n| project \"date\", \"vo2max\"\n| order by \"date\" asc",
-          "url": "/api/metrics/vo2max?from=${__from}&to=${__to}",
+          "url": "/api/metrics/vo2max?from=${__from}&to=${__to}&bucket=day&rollup=avg",
           "url_options": {
             "data": "",
             "method": "GET"
@@ -1216,14 +1183,10 @@
         "overrides": [
           {
             "matcher": {
-              "id": "byRegexp",
-              "options": ".*weight.*"
+              "id": "byName",
+              "options": "Daily"
             },
             "properties": [
-              {
-                "id": "displayName",
-                "value": "Daily"
-              },
               {
                 "id": "custom.lineWidth",
                 "value": 1
@@ -1240,14 +1203,10 @@
           },
           {
             "matcher": {
-              "id": "byRegexp",
-              "options": ".*weekly_trend.*"
+              "id": "byName",
+              "options": "Trend"
             },
             "properties": [
-              {
-                "id": "displayName",
-                "value": "Trend"
-              },
               {
                 "id": "color",
                 "value": {
@@ -1301,8 +1260,8 @@
               "type": "timestamp"
             },
             {
-              "selector": "weight",
-              "text": "Weight",
+              "selector": "value",
+              "text": "Daily",
               "type": "number"
             }
           ],
@@ -1313,13 +1272,12 @@
           "filters": [],
           "format": "table",
           "global_query_id": "",
-          "parser": "uql",
+          "parser": "backend",
           "refId": "Weight",
           "root_selector": "",
           "source": "url",
           "type": "json",
-          "uql": "parse-json\n| extend \"date\"=todatetime(\"date\"), \"weight\"=tonumber(\"qty\")\n| project \"date\", \"weight\"\n| order by \"date\" asc",
-          "url": "/api/metrics/weight_body_mass?from=${__from}&to=${__to}",
+          "url": "/api/metrics/weight_body_mass?from=${__from}&to=${__to}&bucket=day&rollup=avg",
           "url_options": {
             "data": "",
             "method": "GET"
@@ -1333,8 +1291,8 @@
               "type": "timestamp"
             },
             {
-              "selector": "weekly_trend",
-              "text": "Weekly Trend",
+              "selector": "value",
+              "text": "Trend",
               "type": "number"
             }
           ],
@@ -1345,13 +1303,12 @@
           "filters": [],
           "format": "table",
           "global_query_id": "",
-          "parser": "uql",
+          "parser": "backend",
           "refId": "Weight Trend",
           "root_selector": "",
           "source": "url",
           "type": "json",
-          "uql": "parse-json\n| extend \"date\"=todatetime(\"date\"), \"qty\"=tonumber(\"qty\")\n| extend \"week\"=startofweek(\"date\")\n| extend \"week_label\"=format_datetime(\"week\",'YYYY-MM-DD')\n| summarize \"weekly_trend\"=mean(\"qty\") by \"week_label\"\n| extend \"date\"=strcat(\"week_label\",'T12:00:00Z')\n| extend \"date\"=todatetime(\"date\")\n| project \"date\", \"weekly_trend\"\n| order by \"date\" asc",
-          "url": "/api/metrics/weight_body_mass?from=${__from}&to=${__to}",
+          "url": "/api/metrics/weight_body_mass?from=${__from}&to=${__to}&bucket=day&rollup=avg&trend=rolling_avg&window=14",
           "url_options": {
             "data": "",
             "method": "GET"
@@ -1420,14 +1377,10 @@
         "overrides": [
           {
             "matcher": {
-              "id": "byRegexp",
-              "options": ".*body_fat.*"
+              "id": "byName",
+              "options": "Daily"
             },
             "properties": [
-              {
-                "id": "displayName",
-                "value": "Daily"
-              },
               {
                 "id": "custom.lineWidth",
                 "value": 1
@@ -1444,14 +1397,10 @@
           },
           {
             "matcher": {
-              "id": "byRegexp",
-              "options": ".*weekly_trend.*"
+              "id": "byName",
+              "options": "Trend"
             },
             "properties": [
-              {
-                "id": "displayName",
-                "value": "Trend"
-              },
               {
                 "id": "color",
                 "value": {
@@ -1505,8 +1454,8 @@
               "type": "timestamp"
             },
             {
-              "selector": "body_fat",
-              "text": "Body Fat %",
+              "selector": "value",
+              "text": "Daily",
               "type": "number"
             }
           ],
@@ -1517,13 +1466,12 @@
           "filters": [],
           "format": "table",
           "global_query_id": "",
-          "parser": "uql",
+          "parser": "backend",
           "refId": "Body Fat",
           "root_selector": "",
           "source": "url",
           "type": "json",
-          "uql": "parse-json\n| extend \"date\"=todatetime(\"date\"), \"body_fat\"=tonumber(\"qty\")\n| project \"date\", \"body_fat\"\n| order by \"date\" asc",
-          "url": "/api/metrics/body_fat_percentage?from=${__from}&to=${__to}",
+          "url": "/api/metrics/body_fat_percentage?from=${__from}&to=${__to}&bucket=day&rollup=avg",
           "url_options": {
             "data": "",
             "method": "GET"
@@ -1537,8 +1485,8 @@
               "type": "timestamp"
             },
             {
-              "selector": "weekly_trend",
-              "text": "Weekly Trend",
+              "selector": "value",
+              "text": "Trend",
               "type": "number"
             }
           ],
@@ -1549,13 +1497,12 @@
           "filters": [],
           "format": "table",
           "global_query_id": "",
-          "parser": "uql",
+          "parser": "backend",
           "refId": "Body Fat Trend",
           "root_selector": "",
           "source": "url",
           "type": "json",
-          "uql": "parse-json\n| extend \"date\"=todatetime(\"date\"), \"qty\"=tonumber(\"qty\")\n| extend \"week\"=startofweek(\"date\")\n| extend \"week_label\"=format_datetime(\"week\",'YYYY-MM-DD')\n| summarize \"weekly_trend\"=mean(\"qty\") by \"week_label\"\n| extend \"date\"=strcat(\"week_label\",'T12:00:00Z')\n| extend \"date\"=todatetime(\"date\")\n| project \"date\", \"weekly_trend\"\n| order by \"date\" asc",
-          "url": "/api/metrics/body_fat_percentage?from=${__from}&to=${__to}",
+          "url": "/api/metrics/body_fat_percentage?from=${__from}&to=${__to}&bucket=day&rollup=avg&trend=rolling_avg&window=14",
           "url_options": {
             "data": "",
             "method": "GET"
