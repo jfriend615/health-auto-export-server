@@ -400,7 +400,7 @@
                 "value": [
                   {
                     "title": "Set Selected Workout",
-                    "url": "/d/eedjdc3i47klcb/workout-details?var-selected_workout=${__data.fields[0]}&from=${__data.fields.Start}&to=${__data.fields.End}﻿"
+                    "url": "/d/eedjdc3i47klcb/workout-details?var-selected_workout=${__data.fields[0]}&from=${__data.fields[4]}&to=${__data.fields[5]}"
                   }
                 ]
               },
@@ -419,6 +419,30 @@
               {
                 "id": "custom.width",
                 "value": 204
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Start ms"
+            },
+            "properties": [
+              {
+                "id": "custom.hidden",
+                "value": true
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "End ms"
+            },
+            "properties": [
+              {
+                "id": "custom.hidden",
+                "value": true
               }
             ]
           },
@@ -476,6 +500,16 @@
               "selector": "end_time",
               "text": "End",
               "type": "timestamp"
+            },
+            {
+              "selector": "start_ms",
+              "text": "Start ms",
+              "type": "number"
+            },
+            {
+              "selector": "end_ms",
+              "text": "End ms",
+              "type": "number"
             },
             {
               "selector": "duration_minutes",

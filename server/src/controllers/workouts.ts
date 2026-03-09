@@ -155,6 +155,8 @@ export const getWorkouts = async (req: Request, res: Response) => {
             workout_type: workout.name,
             start_time: startDate.toISOString(),
             end_time: endDate.toISOString(),
+            start_ms: startDate.getTime(),
+            end_ms: endDate.getTime(),
             duration_minutes: workout.duration / 60,
             calories_burned: workout.activeEnergyBurned?.qty || null,
           };
