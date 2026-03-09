@@ -18,13 +18,513 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 3,
   "links": [],
   "panels": [
     {
       "datasource": {
         "type": "yesoreyeram-infinity-datasource",
         "uid": "bee4k1otx5urkf"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 10000
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 0,
+        "y": 9
+      },
+      "id": 4,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "total_steps",
+              "text": "Total Steps",
+              "type": "number"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "bee4k1otx5urkf"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "Workout Summary Steps",
+          "root_selector": "summary",
+          "source": "url",
+          "type": "json",
+          "url": "/api/workouts/${selected_workout}",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Total Steps",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "bee4k1otx5urkf"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 45
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 6,
+        "y": 9
+      },
+      "id": 5,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "duration_minutes",
+              "text": "Duration (min)",
+              "type": "number"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "bee4k1otx5urkf"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "Workout Duration",
+          "root_selector": "",
+          "source": "url",
+          "type": "json",
+          "url": "/api/workouts/${selected_workout}",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Duration (min)",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "bee4k1otx5urkf"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 400
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 12,
+        "y": 9
+      },
+      "id": 6,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "active_energy",
+              "text": "Active Energy",
+              "type": "number"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "bee4k1otx5urkf"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "Workout Active Energy",
+          "root_selector": "summary",
+          "source": "url",
+          "type": "json",
+          "url": "/api/workouts/${selected_workout}",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Active Energy",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "bee4k1otx5urkf"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 120
+              },
+              {
+                "color": "red",
+                "value": 160
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 18,
+        "y": 9
+      },
+      "id": 7,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "avg_heart_rate",
+              "text": "Average Heart Rate",
+              "type": "number"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "bee4k1otx5urkf"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "Workout Avg Heart Rate",
+          "root_selector": "summary",
+          "source": "url",
+          "type": "json",
+          "url": "/api/workouts/${selected_workout}",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Avg Heart Rate",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "afer9cqx2twjkc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "footer": {
+              "reducers": []
+            },
+            "inspect": false
+          },
+          "links": [],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "ID"
+            },
+            "properties": [
+              {
+                "id": "links",
+                "value": [
+                  {
+                    "title": "Set Selected Workout",
+                    "url": "/d/eedjdc3i47klcb/workout-details?var-selected_workout=${__data.fields[0]}&from=${__data.fields.Start}&to=${__data.fields.End}﻿"
+                  }
+                ]
+              },
+              {
+                "id": "custom.width",
+                "value": 260
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Start"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 204
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Workout Type"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 153
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 3,
+      "options": {
+        "cellHeight": "sm",
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "Start"
+          }
+        ]
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "id",
+              "text": "ID",
+              "type": "string"
+            },
+            {
+              "selector": "workout_type",
+              "text": "Workout Type",
+              "type": "string"
+            },
+            {
+              "selector": "start_time",
+              "text": "Start",
+              "type": "timestamp"
+            },
+            {
+              "selector": "end_time",
+              "text": "End",
+              "type": "timestamp"
+            },
+            {
+              "selector": "duration_minutes",
+              "text": "Duration",
+              "type": "number"
+            },
+            {
+              "selector": "calories_burned",
+              "text": "Active Energy",
+              "type": "number"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "afer9cqx2twjkc"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "simple",
+          "refId": "Workouts",
+          "root_selector": "",
+          "source": "url",
+          "type": "json",
+          "url": "/api/workouts",
+          "url_options": {
+            "data": "",
+            "headers": [],
+            "method": "GET",
+            "params": [
+              {
+                "key": "to",
+                "value": "${__to:date}"
+              },
+              {
+                "key": "from",
+                "value": "${__from:date}"
+              }
+            ]
+          }
+        }
+      ],
+      "title": "Workouts",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "afer9cqx2twjkc"
       },
       "fieldConfig": {
         "defaults": {
@@ -44,7 +544,7 @@
             "steps": [
               {
                 "color": "green",
-                "value": null
+                "value": 0
               },
               {
                 "color": "red",
@@ -56,10 +556,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
+        "h": 11,
         "w": 12,
         "x": 0,
-        "y": 0
+        "y": 13
       },
       "id": 2,
       "options": {
@@ -69,11 +569,13 @@
             "theme": "auto"
           },
           "name": "Layer 0",
-          "type": "default"
+          "noRepeat": false,
+          "opacity": 0.7,
+          "type": "osm-standard"
         },
         "controls": {
           "mouseWheelZoom": true,
-          "showAttribution": true,
+          "showAttribution": false,
           "showDebug": false,
           "showMeasure": false,
           "showScale": false,
@@ -85,7 +587,7 @@
               "arrow": 0,
               "style": {
                 "color": {
-                  "fixed": "green"
+                  "fixed": "dark-green"
                 },
                 "lineWidth": 2,
                 "opacity": 1,
@@ -96,13 +598,12 @@
                   "mode": "mod"
                 },
                 "size": {
-                  "fixed": 5,
+                  "fixed": 4,
                   "max": 15,
                   "min": 2
                 },
                 "symbol": {
-                  "field": "",
-                  "fixed": "",
+                  "fixed": "img/icons/marker/circle.svg",
                   "mode": "fixed"
                 },
                 "symbolAlign": {
@@ -123,12 +624,10 @@
               "options": "Workout Route"
             },
             "location": {
-              "latitude": "Latitude",
-              "longitude": "Longitude",
-              "mode": "coords"
+              "mode": "auto"
             },
             "name": "Route",
-            "opacity": 0.4,
+            "opacity": 0.5,
             "tooltip": true,
             "type": "route"
           }
@@ -143,11 +642,12 @@
           "lat": 0,
           "layer": "Route",
           "lon": 0,
+          "noRepeat": false,
           "padding": 1,
           "zoom": 15
         }
       },
-      "pluginVersion": "11.5.1",
+      "pluginVersion": "12.4.0",
       "targets": [
         {
           "columns": [
@@ -192,7 +692,7 @@
     {
       "datasource": {
         "type": "yesoreyeram-infinity-datasource",
-        "uid": "bee4k1otx5urkf"
+        "uid": "afer9cqx2twjkc"
       },
       "fieldConfig": {
         "defaults": {
@@ -217,13 +717,14 @@
               "viz": false
             },
             "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
+            "lineInterpolation": "smooth",
+            "lineWidth": 2,
             "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
             },
             "showPoints": "auto",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -239,7 +740,7 @@
             "steps": [
               {
                 "color": "green",
-                "value": null
+                "value": 0
               },
               {
                 "color": "#6ED0E0",
@@ -267,10 +768,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
+        "h": 11,
         "w": 12,
-        "x": 0,
-        "y": 8
+        "x": 12,
+        "y": 13
       },
       "id": 1,
       "options": {
@@ -286,7 +787,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.5.1",
+      "pluginVersion": "12.4.0",
       "targets": [
         {
           "columns": [
@@ -322,23 +823,276 @@
       ],
       "title": "Heart Rate",
       "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "afer9cqx2twjkc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-BlYlRd",
+            "seriesBy": "last"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "scheme",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "showValues": false,
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "#6ED0E0",
+                "value": 0
+              },
+              {
+                "color": "blue",
+                "value": 40
+              },
+              {
+                "color": "green",
+                "value": 100
+              },
+              {
+                "color": "#EAB839",
+                "value": 120
+              },
+              {
+                "color": "red",
+                "value": 135
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 24
+      },
+      "id": 8,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "timestamp",
+              "text": "Time",
+              "type": "timestamp"
+            },
+            {
+              "selector": "value",
+              "text": "Recovery",
+              "type": "number"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "bee4k1otx5urkf"
+          },
+          "filters": [],
+          "format": "timeseries",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "Heart Rate Recovery",
+          "root_selector": "heartRateRecovery",
+          "source": "url",
+          "type": "json",
+          "url": "/api/workouts/${selected_workout}",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Heart Rate Recovery",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "afer9cqx2twjkc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.8,
+            "drawStyle": "bars",
+            "fillOpacity": 70,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 4,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "showValues": false,
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 20
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 24
+      },
+      "id": 9,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "timestamp",
+              "text": "Time",
+              "type": "timestamp"
+            },
+            {
+              "selector": "value",
+              "text": "Steps",
+              "type": "number"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "bee4k1otx5urkf"
+          },
+          "filters": [],
+          "format": "timeseries",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "Workout Step Count",
+          "root_selector": "stepCount",
+          "source": "url",
+          "type": "json",
+          "url": "/api/workouts/${selected_workout}",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Workout Step Count",
+      "type": "timeseries"
     }
   ],
   "preload": false,
   "refresh": "",
-  "schemaVersion": 40,
+  "schemaVersion": 42,
   "tags": [],
   "templating": {
     "list": [
       {
         "allowCustomValue": false,
         "current": {
-          "text": "9F0C477C-51B9-4F14-8FC6-109DBE455F7D",
-          "value": "9F0C477C-51B9-4F14-8FC6-109DBE455F7D"
+          "text": "2026-03-07T13:19:08.000Z",
+          "value": "6CC9C1EC-58F9-4061-A5D8-845C2D58F832"
         },
         "datasource": {
           "type": "yesoreyeram-infinity-datasource",
-          "uid": "bee4k1otx5urkf"
+          "uid": "afer9cqx2twjkc"
         },
         "definition": "",
         "label": "Selected Workout",
@@ -351,11 +1105,21 @@
                 "selector": "id",
                 "text": "ID",
                 "type": "string"
+              },
+              {
+                "selector": "workout_type",
+                "text": "Workout Type",
+                "type": "string"
+              },
+              {
+                "selector": "start_time",
+                "text": "Start",
+                "type": "string"
               }
             ],
             "filters": [],
             "format": "table",
-            "parser": "backend",
+            "parser": "simple",
             "refId": "variable",
             "root_selector": "",
             "source": "url",
@@ -366,11 +1130,17 @@
               "method": "GET"
             }
           },
+          "meta": {
+            "textField": "Start",
+            "valueField": "ID"
+          },
           "query": "",
-          "queryType": "infinity"
+          "queryType": "infinity",
+          "refId": "variable"
         },
         "refresh": 1,
         "regex": "",
+        "regexApplyTo": "value",
         "type": "query"
       }
     ]
@@ -383,6 +1153,6 @@
   "timezone": "browser",
   "title": "Workout Details",
   "uid": "eedjdc3i47klcb",
-  "version": 22,
+  "version": 18,
   "weekStart": ""
 }

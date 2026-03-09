@@ -410,16 +410,6 @@
               "selector": "qty",
               "text": "Value",
               "type": "number"
-            },
-            {
-              "selector": "units",
-              "text": "Units",
-              "type": "string"
-            },
-            {
-              "selector": "source",
-              "text": "Source",
-              "type": "string"
             }
           ],
           "datasource": {
@@ -534,16 +524,6 @@
               "selector": "qty",
               "text": "Value",
               "type": "number"
-            },
-            {
-              "selector": "units",
-              "text": "Units",
-              "type": "string"
-            },
-            {
-              "selector": "source",
-              "text": "Source",
-              "type": "string"
             }
           ],
           "datasource": {
@@ -553,10 +533,12 @@
           "filters": [],
           "format": "table",
           "global_query_id": "",
+          "parser": "uql",
           "refId": "Step Count",
           "root_selector": "",
           "source": "url",
           "type": "json",
+          "uql": "parse-json\n| extend \"date\"=todatetime(\"date\"), \"qty\"=tonumber(\"qty\")\n| extend \"date\"=startofday(\"date\")\n| extend \"day\"=format_datetime(\"date\",'YYYY-MM-DD')\n| summarize \"qty\"=sum(\"qty\") by \"day\"\n| extend \"date\"=strcat(\"day\",'T12:00:00Z')\n| extend \"date\"=todatetime(\"date\")\n| project \"date\", \"qty\"\n| order by \"date\" asc",
           "url": "/api/metrics/step_count?from=${__from}&to=${__to}",
           "url_options": {
             "data": "",

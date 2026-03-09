@@ -5,6 +5,72 @@ import { IngestResponse } from '../models/IngestResponse';
 import { RouteModel, WorkoutModel, mapWorkoutData, mapRoute } from '../models/Workout';
 import { filterFields, parseDate } from '../utils';
 
+interface WorkoutSeriesPoint {
+  timestamp: string;
+  value: number;
+}
+
+interface WorkoutRoutePoint {
+  latitude: number;
+  longitude: number;
+  time: string;
+}
+
+const roundTo = (value: number, decimals = 2) => {
+  const factor = 10 ** decimals;
+  return Math.round(value * factor) / factor;
+};
+
+const averageOf = (values: number[]) => {
+  if (!values.length) {
+    return null;
+  }
+
+  return roundTo(values.reduce((sum, value) => sum + value, 0) / values.length);
+};
+
+const maxOf = (values: number[]) => {
+  if (!values.length) {
+    return null;
+  }
+
+  return Math.max(...values);
+};
+
+const sumOf = (values: number[]) => {
+  if (!values.length) {
+    return null;
+  }
+
+  return roundTo(values.reduce((sum, value) => sum + value, 0));
+};
+
+const mapHeartRateSeries = (
+  heartRateEntries:
+    | {
+        date: Date;
+        Avg: number;
+      }[]
+    | undefined,
+): WorkoutSeriesPoint[] =>
+  heartRateEntries?.map((entry) => ({
+    timestamp: new Date(entry.date).toISOString(),
+    value: entry.Avg,
+  })) || [];
+
+const mapQuantitySeries = (
+  quantityEntries:
+    | {
+        date: Date;
+        qty: number;
+      }[]
+    | undefined,
+): WorkoutSeriesPoint[] =>
+  quantityEntries?.map((entry) => ({
+    timestamp: new Date(entry.date).toISOString(),
+    value: entry.qty,
+  })) || [];
+
 export const getWorkouts = async (req: Request, res: Response) => {
   try {
     const { startDate, endDate, include, exclude } = req.query;
@@ -68,34 +134,15 @@ export const getWorkout = async (req: Request, res: Response) => {
     const { include, exclude } = req.query;
 
     console.log('Fetching workout details for ID:', id);
-    const workoutMetadata = await WorkoutModel.findOne({ workoutId: id })
-      .lean()
-      .then((workout) => {
-        if (!workout) {
-          return null;
-        }
+    const workout = await WorkoutModel.findOne({ workoutId: id }).lean();
 
-        const heartRateData =
-          workout.heartRateData?.map((hr) => ({
-            type: 'Heart Rate',
-            timestamp: new Date(hr.date).toISOString(),
-            value: hr.Avg,
-          })) || [];
-
-        const heartRateRecovery =
-          workout.heartRateRecovery?.map((hr) => ({
-            type: 'Heart Rate Recovery',
-            timestamp: new Date(hr.date).toISOString(),
-            value: hr.Avg,
-          })) || [];
-
-        return { heartRateData, heartRateRecovery };
-      });
-
-    if (!workoutMetadata) {
+    if (!workout) {
       return res.status(404).json({ error: 'Workout not found' });
     }
 
+    const heartRateData = mapHeartRateSeries(workout.heartRateData);
+    const heartRateRecovery = mapHeartRateSeries(workout.heartRateRecovery);
+    const stepCount = mapQuantitySeries(workout.stepCount);
     const route = await RouteModel.findOne({ workoutId: id })
       .lean()
       .then((route) => {
@@ -108,7 +155,85 @@ export const getWorkout = async (req: Request, res: Response) => {
         });
       });
 
-    let ret = { ...workoutMetadata, route: route || [] };
+    const routePoints: WorkoutRoutePoint[] = route || [];
+    const distanceQty = workout.distance?.qty ?? null;
+    const distanceUnits = workout.distance?.units ?? null;
+    const activeEnergyQty = workout.activeEnergyBurned?.qty ?? workout.activeEnergy?.qty ?? null;
+    const activeEnergyUnits = workout.activeEnergyBurned?.units ?? workout.activeEnergy?.units ?? null;
+    const stepValues = stepCount.map((entry) => entry.value);
+    const heartRateValues = heartRateData.map((entry) => entry.value);
+    const heartRateRecoveryValues = heartRateRecovery.map((entry) => entry.value);
+    const averagePace =
+      distanceQty && distanceQty > 0
+        ? roundTo((workout.duration / 60) / distanceQty)
+        : null;
+
+    let ret = {
+      id: workout.workoutId,
+      workout_type: workout.name,
+      start_time: new Date(workout.start).toISOString(),
+      end_time: new Date(workout.end).toISOString(),
+      duration_minutes: roundTo(workout.duration / 60),
+      distance: distanceQty,
+      distance_units: distanceUnits,
+      active_energy: activeEnergyQty,
+      active_energy_units: activeEnergyUnits,
+      summary: {
+        distance: distanceQty,
+        distance_units: distanceUnits,
+        active_energy: activeEnergyQty,
+        active_energy_units: activeEnergyUnits,
+        total_steps: sumOf(stepValues),
+        avg_heart_rate: averageOf(heartRateValues),
+        max_heart_rate: maxOf(heartRateValues),
+        avg_heart_rate_recovery: averageOf(heartRateRecoveryValues),
+        max_heart_rate_recovery: maxOf(heartRateRecoveryValues),
+        avg_pace_minutes_per_unit: averagePace,
+        route_points: routePoints.length,
+        temperature: workout.temperature?.qty ?? null,
+        temperature_units: workout.temperature?.units ?? null,
+        humidity: workout.humidity?.qty ?? null,
+        humidity_units: workout.humidity?.units ?? null,
+        intensity: workout.intensity?.qty ?? null,
+        intensity_units: workout.intensity?.units ?? null,
+      },
+      series: {
+        heart_rate: heartRateData,
+        heart_rate_recovery: heartRateRecovery,
+        step_count: stepCount,
+        temperature:
+          workout.temperature?.qty != null
+            ? [
+                {
+                  timestamp: new Date(workout.temperature.date).toISOString(),
+                  value: workout.temperature.qty,
+                },
+              ]
+            : [],
+        humidity:
+          workout.humidity?.qty != null
+            ? [
+                {
+                  timestamp: new Date(workout.humidity.date).toISOString(),
+                  value: workout.humidity.qty,
+                },
+              ]
+            : [],
+        intensity:
+          workout.intensity?.qty != null
+            ? [
+                {
+                  timestamp: new Date(workout.intensity.date).toISOString(),
+                  value: workout.intensity.qty,
+                },
+              ]
+            : [],
+      },
+      heartRateData,
+      heartRateRecovery,
+      stepCount,
+      route: routePoints,
+    };
 
     // Process include/exclude filters if provided
     if (include || exclude) {
