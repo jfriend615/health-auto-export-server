@@ -17,153 +17,19 @@
   },
   "editable": true,
   "fiscalYearStartMonth": 0,
-  "graphTooltip": 0,
-  "id": 5,
+  "graphTooltip": 1,
   "links": [],
   "panels": [
     {
       "datasource": {
         "type": "yesoreyeram-infinity-datasource",
-        "uid": "bee4k1otx5urkf"
+        "uid": "afer9cqx2twjkc"
       },
       "fieldConfig": {
         "defaults": {
           "color": {
-            "fixedColor": "blue",
-            "mode": "shades"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "fillOpacity": 80,
-            "gradientMode": "hue",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineWidth": 1,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 0,
-        "y": 0
-      },
-      "id": 3,
-      "options": {
-        "barRadius": 0,
-        "barWidth": 0.97,
-        "fullHighlight": false,
-        "groupWidth": 0.7,
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "orientation": "auto",
-        "showValue": "auto",
-        "stacking": "none",
-        "tooltip": {
-          "hideZeros": false,
-          "mode": "single",
-          "sort": "none"
-        },
-        "xTickLabelRotation": 0,
-        "xTickLabelSpacing": 0
-      },
-      "pluginVersion": "11.5.1",
-      "targets": [
-        {
-          "columns": [
-            {
-              "selector": "date",
-              "text": "Date",
-              "type": "timestamp"
-            },
-            {
-              "selector": "awake",
-              "text": "Awake",
-              "type": "number"
-            },
-            {
-              "selector": "asleep",
-              "text": "Asleep",
-              "type": "number"
-            },
-            {
-              "selector": "core",
-              "text": "Core",
-              "type": "number"
-            },
-            {
-              "selector": "rem",
-              "text": "REM",
-              "type": "number"
-            },
-            {
-              "selector": "deep",
-              "text": "Deep",
-              "type": "number"
-            }
-          ],
-          "datasource": {
-            "type": "yesoreyeram-infinity-datasource",
-            "uid": "bee4k1otx5urkf"
-          },
-          "filters": [],
-          "format": "table",
-          "global_query_id": "",
-          "refId": "A",
-          "root_selector": "",
-          "source": "url",
-          "type": "json",
-          "url": "/api/metrics/sleep_analysis?from=${__from}&to=${__to}",
-          "url_options": {
-            "data": "",
-            "method": "GET"
-          }
-        }
-      ],
-      "title": "Sleep Analysis",
-      "type": "barchart"
-    },
-    {
-      "datasource": {
-        "type": "yesoreyeram-infinity-datasource",
-        "uid": "bee4k1otx5urkf"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "continuous-YlRd"
+            "fixedColor": "#4C78A8",
+            "mode": "fixed"
           },
           "custom": {
             "axisBorderShow": false,
@@ -172,10 +38,10 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
-            "barWidthFactor": 0.6,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "scheme",
+            "barWidthFactor": 0.85,
+            "drawStyle": "bars",
+            "fillOpacity": 70,
+            "gradientMode": "none",
             "hideFrom": {
               "legend": false,
               "tooltip": false,
@@ -183,15 +49,13 @@
             },
             "insertNulls": false,
             "lineInterpolation": "linear",
-            "lineStyle": {
-              "fill": "solid"
-            },
             "lineWidth": 1,
             "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
             },
-            "showPoints": "auto",
+            "showPoints": "never",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -207,181 +71,70 @@
             "steps": [
               {
                 "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
+                "value": 0
               }
             ]
           }
         },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 12,
-        "y": 0
-      },
-      "id": 2,
-      "options": {
-        "candleStyle": "candles",
-        "colorStrategy": "open-close",
-        "colors": {
-          "down": "red",
-          "up": "red"
-        },
-        "fields": {
-          "close": "Max",
-          "high": "Max",
-          "low": "Min",
-          "open": "Min"
-        },
-        "includeAllFields": false,
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "mode": "candles+volume",
-        "tooltip": {
-          "hideZeros": false,
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "11.5.1",
-      "targets": [
-        {
-          "columns": [
-            {
-              "selector": "date",
-              "text": "Timestamp",
-              "type": "timestamp"
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": ".*daily_steps.*"
             },
-            {
-              "selector": "Min",
-              "text": "Min",
-              "type": "number"
-            },
-            {
-              "selector": "Avg",
-              "text": "Avg",
-              "type": "number"
-            },
-            {
-              "selector": "Max",
-              "text": "Max",
-              "type": "number"
-            },
-            {
-              "selector": "units",
-              "text": "Units",
-              "type": "string"
-            },
-            {
-              "selector": "source",
-              "text": "Source",
-              "type": "string"
-            }
-          ],
-          "datasource": {
-            "type": "yesoreyeram-infinity-datasource",
-            "uid": "bee4k1otx5urkf"
-          },
-          "filters": [],
-          "format": "table",
-          "global_query_id": "",
-          "refId": "A",
-          "root_selector": "",
-          "source": "url",
-          "type": "json",
-          "url": "/api/metrics/heart_rate?from=${__from}&to=${__to}",
-          "url_options": {
-            "data": "",
-            "method": "GET"
-          }
-        }
-      ],
-      "title": "Heart Rate",
-      "type": "candlestick"
-    },
-    {
-      "datasource": {
-        "type": "yesoreyeram-infinity-datasource",
-        "uid": "bee4k1otx5urkf"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "continuous-GrYlRd",
-            "seriesBy": "min"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "barWidthFactor": 0.6,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "scheme",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
+            "properties": [
               {
-                "color": "green",
-                "value": null
+                "id": "displayName",
+                "value": "Daily"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": ".*weekly_trend.*"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Trend"
               },
               {
-                "color": "#EAB839",
-                "value": 400
+                "id": "color",
+                "value": {
+                  "fixedColor": "#F2CC0C",
+                  "mode": "fixed"
+                }
               },
               {
-                "color": "orange",
-                "value": 600
+                "id": "custom.drawStyle",
+                "value": "line"
               },
               {
-                "color": "red",
-                "value": 800
+                "id": "custom.fillOpacity",
+                "value": 0
+              },
+              {
+                "id": "custom.lineWidth",
+                "value": 3
+              },
+              {
+                "id": "custom.showPoints",
+                "value": "never"
+              },
+              {
+                "id": "custom.lineInterpolation",
+                "value": "smooth"
               }
             ]
           }
-        },
-        "overrides": []
+        ]
       },
       "gridPos": {
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 8
+        "y": 0
       },
       "id": 1,
       "options": {
@@ -397,18 +150,18 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.5.1",
+      "pluginVersion": "12.4.0",
       "targets": [
         {
           "columns": [
             {
               "selector": "date",
-              "text": "Timestamp",
+              "text": "Date",
               "type": "timestamp"
             },
             {
-              "selector": "qty",
-              "text": "Value",
+              "selector": "daily_steps",
+              "text": "Daily Steps",
               "type": "number"
             }
           ],
@@ -419,31 +172,64 @@
           "filters": [],
           "format": "table",
           "global_query_id": "",
-          "refId": "Active Energy",
+          "parser": "uql",
+          "refId": "Daily Steps",
           "root_selector": "",
           "source": "url",
           "type": "json",
-          "url": "/api/metrics/active_energy?from=${__from}&to=${__to}",
+          "uql": "parse-json\n| extend \"date\"=todatetime(\"date\"), \"qty\"=tonumber(\"qty\")\n| extend \"date\"=startofday(\"date\")\n| extend \"day\"=format_datetime(\"date\",'YYYY-MM-DD')\n| summarize \"daily_steps\"=sum(\"qty\") by \"day\"\n| extend \"date\"=strcat(\"day\",'T12:00:00Z')\n| extend \"date\"=todatetime(\"date\")\n| project \"date\", \"daily_steps\"\n| order by \"date\" asc",
+          "url": "/api/metrics/step_count?from=${__from}&to=${__to}",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        },
+        {
+          "columns": [
+            {
+              "selector": "date",
+              "text": "Date",
+              "type": "timestamp"
+            },
+            {
+              "selector": "weekly_trend",
+              "text": "Weekly Trend",
+              "type": "number"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "bee4k1otx5urkf"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "uql",
+          "refId": "Steps Trend",
+          "root_selector": "",
+          "source": "url",
+          "type": "json",
+          "uql": "parse-json\n| extend \"date\"=todatetime(\"date\"), \"qty\"=tonumber(\"qty\")\n| extend \"date\"=startofday(\"date\")\n| extend \"day\"=format_datetime(\"date\",'YYYY-MM-DD')\n| summarize \"daily_steps\"=sum(\"qty\") by \"day\"\n| extend \"date\"=todatetime(\"day\")\n| extend \"week\"=startofweek(\"date\")\n| extend \"week_label\"=format_datetime(\"week\",'YYYY-MM-DD')\n| summarize \"weekly_trend\"=mean(\"daily_steps\") by \"week_label\"\n| extend \"date\"=strcat(\"week_label\",'T12:00:00Z')\n| extend \"date\"=todatetime(\"date\")\n| project \"date\", \"weekly_trend\"\n| order by \"date\" asc",
+          "url": "/api/metrics/step_count?from=${__from}&to=${__to}",
           "url_options": {
             "data": "",
             "method": "GET"
           }
         }
       ],
-      "title": "Active Energy",
+      "title": "Daily Steps",
       "type": "timeseries"
     },
     {
       "datasource": {
         "type": "yesoreyeram-infinity-datasource",
-        "uid": "bee4k1otx5urkf"
+        "uid": "afer9cqx2twjkc"
       },
       "fieldConfig": {
         "defaults": {
           "color": {
-            "fixedColor": "blue",
-            "mode": "shades",
-            "seriesBy": "min"
+            "fixedColor": "#F58518",
+            "mode": "fixed"
           },
           "custom": {
             "axisBorderShow": false,
@@ -452,10 +238,10 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
-            "barWidthFactor": 0.6,
+            "barWidthFactor": 0.85,
             "drawStyle": "bars",
-            "fillOpacity": 0,
-            "gradientMode": "hue",
+            "fillOpacity": 70,
+            "gradientMode": "none",
             "hideFrom": {
               "legend": false,
               "tooltip": false,
@@ -468,7 +254,8 @@
             "scaleDistribution": {
               "type": "linear"
             },
-            "showPoints": "auto",
+            "showPoints": "never",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -484,20 +271,72 @@
             "steps": [
               {
                 "color": "green",
-                "value": null
+                "value": 0
               }
             ]
           }
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": ".*daily_active_energy.*"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Daily"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": ".*weekly_trend.*"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Trend"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#73BF69",
+                  "mode": "fixed"
+                }
+              },
+              {
+                "id": "custom.drawStyle",
+                "value": "line"
+              },
+              {
+                "id": "custom.fillOpacity",
+                "value": 0
+              },
+              {
+                "id": "custom.lineWidth",
+                "value": 3
+              },
+              {
+                "id": "custom.showPoints",
+                "value": "never"
+              },
+              {
+                "id": "custom.lineInterpolation",
+                "value": "smooth"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 8
+        "y": 0
       },
-      "id": 6,
+      "id": 2,
       "options": {
         "legend": {
           "calcs": [],
@@ -511,18 +350,18 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.5.1",
+      "pluginVersion": "12.4.0",
       "targets": [
         {
           "columns": [
             {
               "selector": "date",
-              "text": "Timestamp",
+              "text": "Date",
               "type": "timestamp"
             },
             {
-              "selector": "qty",
-              "text": "Value",
+              "selector": "daily_active_energy",
+              "text": "Daily Active Energy",
               "type": "number"
             }
           ],
@@ -534,31 +373,248 @@
           "format": "table",
           "global_query_id": "",
           "parser": "uql",
-          "refId": "Step Count",
+          "refId": "Daily Active Energy",
           "root_selector": "",
           "source": "url",
           "type": "json",
-          "uql": "parse-json\n| extend \"date\"=todatetime(\"date\"), \"qty\"=tonumber(\"qty\")\n| extend \"date\"=startofday(\"date\")\n| extend \"day\"=format_datetime(\"date\",'YYYY-MM-DD')\n| summarize \"qty\"=sum(\"qty\") by \"day\"\n| extend \"date\"=strcat(\"day\",'T12:00:00Z')\n| extend \"date\"=todatetime(\"date\")\n| project \"date\", \"qty\"\n| order by \"date\" asc",
-          "url": "/api/metrics/step_count?from=${__from}&to=${__to}",
+          "uql": "parse-json\n| extend \"date\"=todatetime(\"date\"), \"qty\"=tonumber(\"qty\")\n| extend \"date\"=startofday(\"date\")\n| extend \"day\"=format_datetime(\"date\",'YYYY-MM-DD')\n| summarize \"daily_active_energy\"=sum(\"qty\") by \"day\"\n| extend \"date\"=strcat(\"day\",'T12:00:00Z')\n| extend \"date\"=todatetime(\"date\")\n| project \"date\", \"daily_active_energy\"\n| order by \"date\" asc",
+          "url": "/api/metrics/active_energy?from=${__from}&to=${__to}",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        },
+        {
+          "columns": [
+            {
+              "selector": "date",
+              "text": "Date",
+              "type": "timestamp"
+            },
+            {
+              "selector": "weekly_trend",
+              "text": "Weekly Trend",
+              "type": "number"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "bee4k1otx5urkf"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "uql",
+          "refId": "Active Energy Trend",
+          "root_selector": "",
+          "source": "url",
+          "type": "json",
+          "uql": "parse-json\n| extend \"date\"=todatetime(\"date\"), \"qty\"=tonumber(\"qty\")\n| extend \"date\"=startofday(\"date\")\n| extend \"day\"=format_datetime(\"date\",'YYYY-MM-DD')\n| summarize \"daily_active_energy\"=sum(\"qty\") by \"day\"\n| extend \"date\"=todatetime(\"day\")\n| extend \"week\"=startofweek(\"date\")\n| extend \"week_label\"=format_datetime(\"week\",'YYYY-MM-DD')\n| summarize \"weekly_trend\"=mean(\"daily_active_energy\") by \"week_label\"\n| extend \"date\"=strcat(\"week_label\",'T12:00:00Z')\n| extend \"date\"=todatetime(\"date\")\n| project \"date\", \"weekly_trend\"\n| order by \"date\" asc",
+          "url": "/api/metrics/active_energy?from=${__from}&to=${__to}",
           "url_options": {
             "data": "",
             "method": "GET"
           }
         }
       ],
-      "title": "Step Count",
+      "title": "Daily Active Energy",
       "type": "timeseries"
     },
     {
       "datasource": {
         "type": "yesoreyeram-infinity-datasource",
-        "uid": "bee4k1otx5urkf"
+        "uid": "afer9cqx2twjkc"
       },
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "continuous-RdYlGr",
-            "seriesBy": "min"
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "fillOpacity": 80,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Core"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#4C78A8",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "REM"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#B877D9",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Deep"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#1F3A93",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Awake"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#E24D42",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 8
+      },
+      "id": 3,
+      "options": {
+        "barRadius": 0,
+        "barWidth": 0.9,
+        "fullHighlight": false,
+        "groupWidth": 0.7,
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "orientation": "auto",
+        "showValue": "never",
+        "stacking": "normal",
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        },
+        "xTickLabelRotation": 0,
+        "xTickLabelSpacing": 0
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "date",
+              "text": "Date",
+              "type": "timestamp"
+            },
+            {
+              "selector": "core",
+              "text": "Core",
+              "type": "number"
+            },
+            {
+              "selector": "rem",
+              "text": "REM",
+              "type": "number"
+            },
+            {
+              "selector": "deep",
+              "text": "Deep",
+              "type": "number"
+            },
+            {
+              "selector": "awake",
+              "text": "Awake",
+              "type": "number"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "bee4k1otx5urkf"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "refId": "Sleep Stages",
+          "root_selector": "",
+          "source": "url",
+          "type": "json",
+          "url": "/api/metrics/sleep_analysis?from=${__from}&to=${__to}",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Sleep Stages",
+      "type": "barchart"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "afer9cqx2twjkc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "#73BF69",
+            "mode": "fixed"
           },
           "custom": {
             "axisBorderShow": false,
@@ -568,23 +624,24 @@
             "axisPlacement": "auto",
             "barAlignment": 0,
             "barWidthFactor": 0.6,
-            "drawStyle": "bars",
-            "fillOpacity": 0,
-            "gradientMode": "hue",
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
             "hideFrom": {
               "legend": false,
               "tooltip": false,
               "viz": false
             },
             "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
+            "lineInterpolation": "smooth",
+            "lineWidth": 2,
             "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
             },
             "showPoints": "auto",
-            "spanNulls": false,
+            "showValues": false,
+            "spanNulls": true,
             "stacking": {
               "group": "A",
               "mode": "none"
@@ -599,30 +656,294 @@
             "steps": [
               {
                 "color": "green",
-                "value": null
+                "value": 0
               },
               {
-                "color": "#EAB839",
-                "value": 400
-              },
-              {
-                "color": "orange",
-                "value": 600
+                "color": "yellow",
+                "value": 60
               },
               {
                 "color": "red",
-                "value": 800
+                "value": 70
               }
             ]
           }
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": ".*resting_heart_rate.*"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Daily"
+              },
+              {
+                "id": "custom.lineWidth",
+                "value": 1
+              },
+              {
+                "id": "custom.fillOpacity",
+                "value": 0
+              },
+              {
+                "id": "custom.showPoints",
+                "value": "never"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": ".*weekly_trend.*"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Trend"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#F2CC0C",
+                  "mode": "fixed"
+                }
+              },
+              {
+                "id": "custom.lineWidth",
+                "value": 3
+              },
+              {
+                "id": "custom.showPoints",
+                "value": "never"
+              },
+              {
+                "id": "custom.fillOpacity",
+                "value": 0
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 8,
-        "w": 12,
-        "x": 0,
-        "y": 16
+        "w": 6,
+        "x": 12,
+        "y": 8
+      },
+      "id": 4,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "date",
+              "text": "Date",
+              "type": "timestamp"
+            },
+            {
+              "selector": "resting_heart_rate",
+              "text": "Resting Heart Rate",
+              "type": "number"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "bee4k1otx5urkf"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "uql",
+          "refId": "Resting Heart Rate",
+          "root_selector": "",
+          "source": "url",
+          "type": "json",
+          "uql": "parse-json\n| extend \"date\"=todatetime(\"date\"), \"resting_heart_rate\"=tonumber(\"qty\")\n| project \"date\", \"resting_heart_rate\"\n| order by \"date\" asc",
+          "url": "/api/metrics/resting_heart_rate?from=${__from}&to=${__to}",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        },
+        {
+          "columns": [
+            {
+              "selector": "date",
+              "text": "Date",
+              "type": "timestamp"
+            },
+            {
+              "selector": "weekly_trend",
+              "text": "Weekly Trend",
+              "type": "number"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "bee4k1otx5urkf"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "uql",
+          "refId": "Resting HR Trend",
+          "root_selector": "",
+          "source": "url",
+          "type": "json",
+          "uql": "parse-json\n| extend \"date\"=todatetime(\"date\"), \"qty\"=tonumber(\"qty\")\n| extend \"week\"=startofweek(\"date\")\n| extend \"week_label\"=format_datetime(\"week\",'YYYY-MM-DD')\n| summarize \"weekly_trend\"=mean(\"qty\") by \"week_label\"\n| extend \"date\"=strcat(\"week_label\",'T12:00:00Z')\n| extend \"date\"=todatetime(\"date\")\n| project \"date\", \"weekly_trend\"\n| order by \"date\" asc",
+          "url": "/api/metrics/resting_heart_rate?from=${__from}&to=${__to}",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Resting Heart Rate",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "afer9cqx2twjkc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "#B877D9",
+            "mode": "fixed"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "showValues": false,
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": 0
+              },
+              {
+                "color": "yellow",
+                "value": 25
+              },
+              {
+                "color": "green",
+                "value": 50
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": ".*hrv.*"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Daily"
+              },
+              {
+                "id": "custom.lineWidth",
+                "value": 1
+              },
+              {
+                "id": "custom.fillOpacity",
+                "value": 0
+              },
+              {
+                "id": "custom.showPoints",
+                "value": "never"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": ".*weekly_trend.*"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Trend"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#F2CC0C",
+                  "mode": "fixed"
+                }
+              },
+              {
+                "id": "custom.lineWidth",
+                "value": 3
+              },
+              {
+                "id": "custom.showPoints",
+                "value": "never"
+              },
+              {
+                "id": "custom.fillOpacity",
+                "value": 0
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 6,
+        "x": 18,
+        "y": 8
       },
       "id": 5,
       "options": {
@@ -638,29 +959,19 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.5.1",
+      "pluginVersion": "12.4.0",
       "targets": [
         {
           "columns": [
             {
               "selector": "date",
-              "text": "Timestamp",
+              "text": "Date",
               "type": "timestamp"
             },
             {
-              "selector": "qty",
-              "text": "Value",
+              "selector": "hrv",
+              "text": "HRV",
               "type": "number"
-            },
-            {
-              "selector": "units",
-              "text": "Units",
-              "type": "string"
-            },
-            {
-              "selector": "source",
-              "text": "Source",
-              "type": "string"
             }
           ],
           "datasource": {
@@ -670,36 +981,606 @@
           "filters": [],
           "format": "table",
           "global_query_id": "",
-          "refId": "Cycling Distance",
+          "parser": "uql",
+          "refId": "HRV",
           "root_selector": "",
           "source": "url",
           "type": "json",
-          "url": "/api/metrics/cycling_distance?from=${__from}&to=${__to}",
+          "uql": "parse-json\n| extend \"date\"=todatetime(\"date\"), \"hrv\"=tonumber(\"qty\")\n| project \"date\", \"hrv\"\n| order by \"date\" asc",
+          "url": "/api/metrics/heart_rate_variability?from=${__from}&to=${__to}",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        },
+        {
+          "columns": [
+            {
+              "selector": "date",
+              "text": "Date",
+              "type": "timestamp"
+            },
+            {
+              "selector": "weekly_trend",
+              "text": "Weekly Trend",
+              "type": "number"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "bee4k1otx5urkf"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "uql",
+          "refId": "HRV Trend",
+          "root_selector": "",
+          "source": "url",
+          "type": "json",
+          "uql": "parse-json\n| extend \"date\"=todatetime(\"date\"), \"qty\"=tonumber(\"qty\")\n| extend \"week\"=startofweek(\"date\")\n| extend \"week_label\"=format_datetime(\"week\",'YYYY-MM-DD')\n| summarize \"weekly_trend\"=mean(\"qty\") by \"week_label\"\n| extend \"date\"=strcat(\"week_label\",'T12:00:00Z')\n| extend \"date\"=todatetime(\"date\")\n| project \"date\", \"weekly_trend\"\n| order by \"date\" asc",
+          "url": "/api/metrics/heart_rate_variability?from=${__from}&to=${__to}",
           "url_options": {
             "data": "",
             "method": "GET"
           }
         }
       ],
-      "title": "Cycling Distance",
+      "title": "Heart Rate Variability",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "afer9cqx2twjkc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "#56A64B",
+            "mode": "fixed"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "always",
+            "showValues": false,
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": 0
+              },
+              {
+                "color": "yellow",
+                "value": 30
+              },
+              {
+                "color": "green",
+                "value": 40
+              },
+              {
+                "color": "blue",
+                "value": 50
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 0,
+        "y": 16
+      },
+      "id": 6,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "date",
+              "text": "Date",
+              "type": "timestamp"
+            },
+            {
+              "selector": "vo2max",
+              "text": "VO2 Max",
+              "type": "number"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "bee4k1otx5urkf"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "uql",
+          "refId": "VO2 Max",
+          "root_selector": "",
+          "source": "url",
+          "type": "json",
+          "uql": "parse-json\n| extend \"date\"=todatetime(\"date\"), \"vo2max\"=tonumber(\"qty\")\n| project \"date\", \"vo2max\"\n| order by \"date\" asc",
+          "url": "/api/metrics/vo2max?from=${__from}&to=${__to}",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "VO2 Max",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "afer9cqx2twjkc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "#5794F2",
+            "mode": "fixed"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "always",
+            "showValues": false,
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": ".*weight.*"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Daily"
+              },
+              {
+                "id": "custom.lineWidth",
+                "value": 1
+              },
+              {
+                "id": "custom.fillOpacity",
+                "value": 0
+              },
+              {
+                "id": "custom.showPoints",
+                "value": "always"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": ".*weekly_trend.*"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Trend"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#F2CC0C",
+                  "mode": "fixed"
+                }
+              },
+              {
+                "id": "custom.lineWidth",
+                "value": 3
+              },
+              {
+                "id": "custom.showPoints",
+                "value": "never"
+              },
+              {
+                "id": "custom.fillOpacity",
+                "value": 0
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 8,
+        "y": 16
+      },
+      "id": 7,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "date",
+              "text": "Date",
+              "type": "timestamp"
+            },
+            {
+              "selector": "weight",
+              "text": "Weight",
+              "type": "number"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "bee4k1otx5urkf"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "uql",
+          "refId": "Weight",
+          "root_selector": "",
+          "source": "url",
+          "type": "json",
+          "uql": "parse-json\n| extend \"date\"=todatetime(\"date\"), \"weight\"=tonumber(\"qty\")\n| project \"date\", \"weight\"\n| order by \"date\" asc",
+          "url": "/api/metrics/weight_body_mass?from=${__from}&to=${__to}",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        },
+        {
+          "columns": [
+            {
+              "selector": "date",
+              "text": "Date",
+              "type": "timestamp"
+            },
+            {
+              "selector": "weekly_trend",
+              "text": "Weekly Trend",
+              "type": "number"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "bee4k1otx5urkf"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "uql",
+          "refId": "Weight Trend",
+          "root_selector": "",
+          "source": "url",
+          "type": "json",
+          "uql": "parse-json\n| extend \"date\"=todatetime(\"date\"), \"qty\"=tonumber(\"qty\")\n| extend \"week\"=startofweek(\"date\")\n| extend \"week_label\"=format_datetime(\"week\",'YYYY-MM-DD')\n| summarize \"weekly_trend\"=mean(\"qty\") by \"week_label\"\n| extend \"date\"=strcat(\"week_label\",'T12:00:00Z')\n| extend \"date\"=todatetime(\"date\")\n| project \"date\", \"weekly_trend\"\n| order by \"date\" asc",
+          "url": "/api/metrics/weight_body_mass?from=${__from}&to=${__to}",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Weight",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "afer9cqx2twjkc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "#E24D42",
+            "mode": "fixed"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "always",
+            "showValues": false,
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": ".*body_fat.*"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Daily"
+              },
+              {
+                "id": "custom.lineWidth",
+                "value": 1
+              },
+              {
+                "id": "custom.fillOpacity",
+                "value": 0
+              },
+              {
+                "id": "custom.showPoints",
+                "value": "always"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": ".*weekly_trend.*"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Trend"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#F2CC0C",
+                  "mode": "fixed"
+                }
+              },
+              {
+                "id": "custom.lineWidth",
+                "value": 3
+              },
+              {
+                "id": "custom.showPoints",
+                "value": "never"
+              },
+              {
+                "id": "custom.fillOpacity",
+                "value": 0
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 16,
+        "y": 16
+      },
+      "id": 8,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "date",
+              "text": "Date",
+              "type": "timestamp"
+            },
+            {
+              "selector": "body_fat",
+              "text": "Body Fat %",
+              "type": "number"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "bee4k1otx5urkf"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "uql",
+          "refId": "Body Fat",
+          "root_selector": "",
+          "source": "url",
+          "type": "json",
+          "uql": "parse-json\n| extend \"date\"=todatetime(\"date\"), \"body_fat\"=tonumber(\"qty\")\n| project \"date\", \"body_fat\"\n| order by \"date\" asc",
+          "url": "/api/metrics/body_fat_percentage?from=${__from}&to=${__to}",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        },
+        {
+          "columns": [
+            {
+              "selector": "date",
+              "text": "Date",
+              "type": "timestamp"
+            },
+            {
+              "selector": "weekly_trend",
+              "text": "Weekly Trend",
+              "type": "number"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "bee4k1otx5urkf"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "uql",
+          "refId": "Body Fat Trend",
+          "root_selector": "",
+          "source": "url",
+          "type": "json",
+          "uql": "parse-json\n| extend \"date\"=todatetime(\"date\"), \"qty\"=tonumber(\"qty\")\n| extend \"week\"=startofweek(\"date\")\n| extend \"week_label\"=format_datetime(\"week\",'YYYY-MM-DD')\n| summarize \"weekly_trend\"=mean(\"qty\") by \"week_label\"\n| extend \"date\"=strcat(\"week_label\",'T12:00:00Z')\n| extend \"date\"=todatetime(\"date\")\n| project \"date\", \"weekly_trend\"\n| order by \"date\" asc",
+          "url": "/api/metrics/body_fat_percentage?from=${__from}&to=${__to}",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Body Fat %",
       "type": "timeseries"
     }
   ],
   "preload": false,
   "refresh": "",
-  "schemaVersion": 40,
+  "schemaVersion": 42,
   "tags": [],
   "templating": {
     "list": []
   },
   "time": {
-    "from": "now-30d",
+    "from": "now-90d",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "browser",
   "title": "Health Metrics",
   "uid": "dee1dgpz9tam8f",
-  "version": 22,
+  "version": 19,
   "weekStart": ""
 }
