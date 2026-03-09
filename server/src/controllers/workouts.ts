@@ -16,6 +16,11 @@ interface WorkoutRoutePoint {
   time: string;
 }
 
+interface TimedQuantityEntry {
+  date: Date;
+  qty: number;
+}
+
 const roundTo = (value: number, decimals = 2) => {
   const factor = 10 ** decimals;
   return Math.round(value * factor) / factor;
@@ -45,6 +50,20 @@ const sumOf = (values: number[]) => {
   return roundTo(values.reduce((sum, value) => sum + value, 0));
 };
 
+const toIsoStringOrNull = (value: Date | string | number | undefined | null) => {
+  if (value == null) {
+    return null;
+  }
+
+  const date = new Date(value);
+
+  if (Number.isNaN(date.getTime())) {
+    return null;
+  }
+
+  return date.toISOString();
+};
+
 const mapHeartRateSeries = (
   heartRateEntries:
     | {
@@ -53,23 +72,55 @@ const mapHeartRateSeries = (
       }[]
     | undefined,
 ): WorkoutSeriesPoint[] =>
-  heartRateEntries?.map((entry) => ({
-    timestamp: new Date(entry.date).toISOString(),
-    value: entry.Avg,
-  })) || [];
+  heartRateEntries?.flatMap((entry) => {
+    const timestamp = toIsoStringOrNull(entry.date);
+
+    if (!timestamp) {
+      return [];
+    }
+
+    return {
+      timestamp,
+      value: entry.Avg,
+    };
+  }) || [];
 
 const mapQuantitySeries = (
   quantityEntries:
-    | {
-        date: Date;
-        qty: number;
-      }[]
+    | TimedQuantityEntry[]
     | undefined,
 ): WorkoutSeriesPoint[] =>
-  quantityEntries?.map((entry) => ({
-    timestamp: new Date(entry.date).toISOString(),
-    value: entry.qty,
-  })) || [];
+  quantityEntries?.flatMap((entry) => {
+    const timestamp = toIsoStringOrNull(entry.date);
+
+    if (!timestamp) {
+      return [];
+    }
+
+    return {
+      timestamp,
+      value: entry.qty,
+    };
+  }) || [];
+
+const mapSingleQuantitySeries = (entry: TimedQuantityEntry | undefined): WorkoutSeriesPoint[] => {
+  if (entry?.qty == null) {
+    return [];
+  }
+
+  const timestamp = toIsoStringOrNull(entry.date);
+
+  if (!timestamp) {
+    return [];
+  }
+
+  return [
+    {
+      timestamp,
+      value: entry.qty,
+    },
+  ];
+};
 
 export const getWorkouts = async (req: Request, res: Response) => {
   try {
@@ -146,11 +197,17 @@ export const getWorkout = async (req: Request, res: Response) => {
     const route = await RouteModel.findOne({ workoutId: id })
       .lean()
       .then((route) => {
-        return route?.locations.map((x) => {
+        return route?.locations.flatMap((x) => {
+          const time = toIsoStringOrNull(x.timestamp);
+
+          if (!time) {
+            return [];
+          }
+
           return {
             latitude: x.latitude,
             longitude: x.longitude,
-            time: new Date(x.timestamp).toISOString(),
+            time,
           };
         });
       });
@@ -201,33 +258,9 @@ export const getWorkout = async (req: Request, res: Response) => {
         heart_rate: heartRateData,
         heart_rate_recovery: heartRateRecovery,
         step_count: stepCount,
-        temperature:
-          workout.temperature?.qty != null
-            ? [
-                {
-                  timestamp: new Date(workout.temperature.date).toISOString(),
-                  value: workout.temperature.qty,
-                },
-              ]
-            : [],
-        humidity:
-          workout.humidity?.qty != null
-            ? [
-                {
-                  timestamp: new Date(workout.humidity.date).toISOString(),
-                  value: workout.humidity.qty,
-                },
-              ]
-            : [],
-        intensity:
-          workout.intensity?.qty != null
-            ? [
-                {
-                  timestamp: new Date(workout.intensity.date).toISOString(),
-                  value: workout.intensity.qty,
-                },
-              ]
-            : [],
+        temperature: mapSingleQuantitySeries(workout.temperature),
+        humidity: mapSingleQuantitySeries(workout.humidity),
+        intensity: mapSingleQuantitySeries(workout.intensity),
       },
       heartRateData,
       heartRateRecovery,
